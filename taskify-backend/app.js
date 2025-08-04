@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://taskify-frontend.vercel.app', // your frontend URL
+  origin: 'https://taskify-ten-ruby.vercel.app/', // your frontend URL
   credentials: true
 }));
 app.use(express.json());
