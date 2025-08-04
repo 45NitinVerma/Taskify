@@ -9,7 +9,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://taskify-frontend.vercel.app', // your frontend URL
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes (we'll add these next)

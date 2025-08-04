@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/api'
+    baseURL: 'https://taskify-yptj.onrender.com',
+    withCredentials: true
 });
 
 // Add a request interceptor to attach the token
