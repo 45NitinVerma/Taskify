@@ -16,8 +16,8 @@ app.use(cors({
 app.use(express.json());
 
 // Routes (we'll add these next)
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/tasks', require('./routes/taskRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
+app.use('/tasks', require('./routes/taskRoutes'));
 
 // Basic error handler
 app.use((err, req, res, next) => {
