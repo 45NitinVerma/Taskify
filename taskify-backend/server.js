@@ -2,12 +2,6 @@
 const app = require('./app');
 const connectDB = require('./config/db');
 
-const cors = require('cors');
-app.use(cors({ 
-    origin: 'http://localhost:3000', // Your React app's URL
-    credentials: true 
-}));
-
 // Connect to database
 connectDB();
 
