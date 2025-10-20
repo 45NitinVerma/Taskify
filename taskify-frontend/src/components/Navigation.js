@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-import { Sun, Moon, Menu, X, LogOut } from "lucide-react"; // Added LogOut icon
+import { Sun, Moon, Menu, X, LogOut, UserCircle2 } from "lucide-react"; // Added LogOut icon
 
 const Navigation = () => {
 	const navigate = useNavigate();
@@ -32,20 +32,16 @@ const Navigation = () => {
 				<p className="text-gray-600 dark:text-gray-300 mb-6">
 					Are you sure you want to log out of your account?
 				</p>
-				<div className="flex space-x-4">
+				<div className="flex justify-between space-x-4">
 					<button
 						onClick={() => setShowLogoutConfirm(false)}
-						className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 
-                                 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 
-                                 dark:hover:bg-gray-700 transition-colors duration-200"
+						className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
 					>
 						Cancel
 					</button>
 					<button
 						onClick={handleLogoutConfirm}
-						className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg
-                                 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700
-                                 transition-colors duration-200 flex items-center justify-center"
+						className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center space-x-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
 					>
 						<LogOut className="w-4 h-4 mr-2" />
 						Logout
@@ -71,34 +67,31 @@ const Navigation = () => {
 	);
 
 	return (
-		<nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+		<nav className="bg-white/80 dark:bg-gray-900/80 shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-blue-700/50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex justify-between h-16">
+				<div className="flex justify-between items-center h-16">
 					{/* Logo and Brand */}
-					<div className="flex items-center">
-						<a
-							href="/"
-							className="flex items-center space-x-3 flex-shrink-0"
+
+					<a
+						href="/"
+						className="flex items-center space-x-2 flex-shrink-0"
+					>
+						{/* You can add a logo image here */}
+						<svg
+							className="h-8 w-8 text-blue-600 dark:text-blue-400"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
 						>
-							{/* You can add a logo image here */}
-							<svg
-								className="h-8 w-8 text-blue-600 dark:text-blue-400"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-								/>
-							</svg>
-							<h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-								Taskify
-							</h1>
-						</a>
-					</div>
+							<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+						</svg>
+						<h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 tracking-tight">
+							Taskify
+						</h1>
+					</a>
 
 					{/* Mobile menu button */}
 					<div className="flex items-center sm:hidden">
@@ -118,16 +111,30 @@ const Navigation = () => {
 
 					{/* Desktop menu */}
 					{user?.email && (
-						<div className="hidden sm:flex items-center space-x-4">
-							<div className="flex items-center space-x-3 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">
-								<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-									{user.name}
+						<div className="hidden sm:flex items-center gap-4">
+							{/* User Info Glass Card */}
+							<div
+								className="flex items-center gap-3 px-4 py-2 rounded-2xl 
+                 backdrop-blur-md bg-black/50 dark:bg-gray-500/30 
+                 border border-black dark:border-gray-300/40 
+                 shadow-sm"
+							>
+								<span className="text-sm font-medium text-white dark:text-gray-200">
+									Welcome,{" "}
+									<span className="font-semibold">
+										{user.name}
+									</span>
 								</span>
 							</div>
+
+							{/* Theme Toggle Button */}
 							<button
 								onClick={toggleTheme}
-								className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
-                                 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+								className="p-2 rounded-xl backdrop-blur-md bg-white/30 dark:bg-gray-800/30
+                 border border-black dark:border-gray-700/40 
+                 text-gray-700 dark:text-gray-200 
+                 hover:bg-white/40 dark:hover:bg-gray-700/50 
+                 transition-all duration-200 shadow-sm"
 								aria-label="Toggle theme"
 							>
 								{isDarkMode ? (
@@ -136,6 +143,8 @@ const Navigation = () => {
 									<Moon className="w-5 h-5" />
 								)}
 							</button>
+
+							{/* Logout */}
 							<LogoutButton />
 						</div>
 					)}
@@ -144,26 +153,28 @@ const Navigation = () => {
 
 			{/* Mobile dropdown menu */}
 			{isMenuOpen && user?.email && (
-				<div className="sm:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 space-y-4 px-4">
-					<div className="flex items-center space-x-3 px-3 py-1 rounded-lg bg-gray-100 dark:bg-gray-700">
+				<div className=" flex justify-between items-center sm:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4  px-4">
+					<div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
 						<span className="text-sm font-medium text-gray-700 dark:text-gray-300">
 							{user.name}
 						</span>
 					</div>
-					<button
-						onClick={toggleTheme}
-						className="w-full flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
+
+					<div className="flex items-center justify-center gap-2">
+						<button
+							onClick={toggleTheme}
+							className="flex items-center justify-center p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 
                                  hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
-						aria-label="Toggle theme"
-					>
-						{isDarkMode ? (
-							<Sun className="w-5 h-5 mr-2" />
-						) : (
-							<Moon className="w-5 h-5 mr-2" />
-						)}
-						<span>Toggle Theme</span>
-					</button>
-					<LogoutButton />
+							aria-label="Toggle theme"
+						>
+							{isDarkMode ? (
+								<Sun className="w-5 h-5 rounded-full" />
+							) : (
+								<Moon className="w-5 h-5 rounded-full" />
+							)}
+						</button>
+						<LogoutButton />
+					</div>
 				</div>
 			)}
 
